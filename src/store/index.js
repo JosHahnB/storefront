@@ -1,9 +1,9 @@
-import {configureStore} from '@reduxjs/toolkit';
-import beastSlice from './beast';
+import { configureStore } from '@reduxjs/toolkit';
+import productSlice from './productStored';
 
 export const store = configureStore({
   reducer: {
-    beast: beastSlice.reducer,
+    product: productSlice.reducer,
   },
 })
 

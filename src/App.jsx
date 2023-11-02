@@ -1,17 +1,17 @@
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
-import BeastModal from './components/beastModal/BeastModal';
-import Beasts from './components/beasts/Beasts';
+import ProductModal from './components/productModal/ProductModal';
+import Products from './components/products/Products';
+import Category from './components/categoryDropdown/Category';
 
 const App = () => {
-  // const selectedBeast = useSelector(state => state.beast.selectedBeast)
   return (
     <div>
-      {/* {selectedBeast && {selectedBeast.title}} */}
       <Header />
-      <Beasts />
+      <Category />
+      <Products />
       <Footer />
-      <BeastModal />
+      <ProductModal />
     </div>
   );
 };

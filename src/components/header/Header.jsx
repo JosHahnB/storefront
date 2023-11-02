@@ -4,7 +4,7 @@ export const Header = () => {
     <AppBar position="static">
       <Toolbar>
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Horned Beasts
+          Products 🧸
         </Typography>
         {/* <Button color="inherit">Login</Button> */}
       </Toolbar>
