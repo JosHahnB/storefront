@@ -1,13 +1,15 @@
-import { AppBar, Toolbar, Typography } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button } from '@mui/material';
 export const Header = () => {
   return (
     <AppBar position="static">
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Products 🧸
+        <Typography variant="h2" component="div" sx={{ flexGrow: 1 }}>
+          Product Shop 🧸
         </Typography>
-        {/* <Button color="inherit">Login</Button> */}
+        {/* <Button>Login</Button> */}
       </Toolbar>
+      
+
     </AppBar>
   );
 };

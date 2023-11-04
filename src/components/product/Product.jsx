@@ -6,16 +6,17 @@ import {
   Typography,
   CardActions,
   Button,
-  // CardMedia,
+  CardMedia,
 } from '@mui/material';
 
 import { useDispatch } from 'react-redux';
-import productSlice from '../../store/productStored';
+import productSlice from '../../store/productSlice';
+// import cartSlice from '../../store/cartSlice';
 
 const Product = ({ product }) => {
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(productSlice.actions.Product(product));
+    dispatch(productSlice.actions.showProduct(product));
   };
   // "name": "TV",
   // "category": "electronics",
@@ -24,26 +25,29 @@ const Product = ({ product }) => {
   return (
     <Grid item xs={8}>
       <Card>
-        {/* <CardMedia
-          sx={{ height: 300 }}
-          image={product.image_url}
-          title={product.title}
-        /> */}
+        <CardMedia
+          sx={{ height: 10 }}
+          image={product.image}
+          title={product.name}
+        />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {product.name}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {product.price}
-          </Typography>
-          <Typography >
-            {product.image}
-          </Typography>
+          <Typography variant='text.secondary'>
+        {new Intl.NumberFormat('en-US', {
+          style: 'currency',
+          currency: 'USD'
+        }).format(product.price)}
+      </Typography>
         </CardContent>
         <CardActions>
           <Button size="small" onClick={handleClick}>
-            Select
+            View
           </Button>
+          {/* <Button size="small" onClick={handleClickCart}>
+            Add to Cart
+          </Button> */}
         </CardActions>
       </Card>
     </Grid>
