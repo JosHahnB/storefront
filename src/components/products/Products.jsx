@@ -7,7 +7,7 @@ import Product from '../product/Product';
 export const Products = () => {
   const productData = useSelector((state) => state.product.productData);
   const selectedCategory = useSelector(
-    (state) => state.product.selectedCategory
+    (state) => state.category.selectedCategory
   );
   // console.log(selectedCategory);
   return (
@@ -16,7 +16,7 @@ export const Products = () => {
       <Grid item xs={12} md={6}>
         {productData
           .filter(
-            (p) => p.category === selectedCategory || selectedCategory === 'all'
+            (p) => p.category === selectedCategory || !selectedCategory
           )
           .map((product) => (
             <Product key={product.title} product={product} />

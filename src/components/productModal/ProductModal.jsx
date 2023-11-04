@@ -1,6 +1,14 @@
-import { Card, CardContent, CardMedia, Modal, Typography } from '@mui/material';
+import {
+  Button,
+  Card,
+  CardContent,
+  CardMedia,
+  Modal,
+  Typography,
+} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import productSlice from '../../store/productStored';
+import cartSlice from '../../store/cartSlice';
+import productSlice from '../../store/productSlice';
 
 const style = {
   position: 'absolute',
@@ -14,14 +22,18 @@ const style = {
   p: 4,
 };
 
-
-
 const ProductModal = () => {
   const product = useSelector((state) => state.product.selectedProduct);
   const dispatch = useDispatch();
+
   const handleClose = () => {
     dispatch(productSlice.actions.showProduct(undefined));
   };
+
+  const addToCartOnClick = () => {
+    dispatch(cartSlice.actions.itemAddedToCart(product));
+  };
+
   return (
     <Modal open={product !== undefined} onClose={handleClose}>
       {product ? (
@@ -29,7 +41,7 @@ const ProductModal = () => {
           <CardMedia
             sx={{ height: 275 }}
             image={product?.image}
-            title={product?.title}
+            title={product?.name}
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
@@ -38,6 +50,8 @@ const ProductModal = () => {
             <Typography variant="body2" color="text.secondary">
               {product?.description}
             </Typography>
+            <Button onClick={addToCartOnClick}>Add to Cart</Button>
+            <Typography>{product.inStock} left!</Typography>
           </CardContent>
         </Card>
       ) : (
