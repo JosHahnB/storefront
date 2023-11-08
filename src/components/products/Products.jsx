@@ -12,8 +12,8 @@ export const Products = () => {
   // console.log(selectedCategory);
   return (
     //fix the grid shit
-    <Grid container spacing={4} marginTop={'10px'} width={'50%'}>
-      <Grid item xs={12} md={6}>
+    <Grid container spacing={2} marginTop={'16px'} >
+      {/* <Grid item xs={12} md={6}> */}
         {productData
           .filter(
             (p) => p.category === selectedCategory || !selectedCategory
@@ -21,7 +21,7 @@ export const Products = () => {
           .map((product) => (
             <Product key={product.title} product={product} />
           ))}
-      </Grid>
+      {/* </Grid> */}
     </Grid>
   );
 };

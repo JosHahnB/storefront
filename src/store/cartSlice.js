@@ -15,7 +15,12 @@ const cartSlice = createSlice({
       state.cartItems = [...state.cartItems, action.payload];
       // state.itemsInCart += 1;
     },
+    deletedItemFromCart: (state, action) => {
+      const index = action.payload;
+      state.cartItems.splice(index, 1)
+    }
   }
+
 })
 
 export default cartSlice;
