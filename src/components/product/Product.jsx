@@ -17,17 +17,18 @@ const Product = ({ product }) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(productSlice.actions.showProduct(product));
+
   };
   // "name": "TV",
   // "category": "electronics",
   // "price": 699.0,
   // "inStock": 5
   return (
-    <Grid item xs={8}>
-      <Card>
+    <Grid item xs={'auto'}>
+      <Card align='center'>
         <CardMedia
-          sx={{ height: 10 }}
-          image={product.image}
+          sx={{ height: 275 }}
+          image={`http://source.unsplash.com/random?${product.name}`}
           title={product.name}
         />
         <CardContent>
@@ -45,9 +46,6 @@ const Product = ({ product }) => {
           <Button size="small" onClick={handleClick}>
             View
           </Button>
-          {/* <Button size="small" onClick={handleClickCart}>
-            Add to Cart
-          </Button> */}
         </CardActions>
       </Card>
     </Grid>

@@ -6,7 +6,7 @@ const url = import.meta.env.VITE_API_URL;
 export const getProducts = createAsyncThunk('GET/products', async () => {
   //  make an async request
   const response = await fetch(`${url}/products`);
-  console.log(response);
+  // console.log(response);
   const json = await response.json();
   console.log(json);
   return json.results;
@@ -27,6 +27,17 @@ export const updateProduct = createAsyncThunk(
     return json;
   }
 );
+
+// export const deleteProduct = createAsyncThunk(
+//   "DELETE/product/:id",
+//   async ({productId}) => {
+//     const response = await fetch(`${url}/products/${productId}`, {
+//       method: "DELETE",
+//         })
+//         const json = await response.json();
+//         return json;
+//   }
+// )
 
 const productSlice = createSlice({
   name: 'product',
@@ -54,11 +65,16 @@ const productSlice = createSlice({
       })
       .addCase(updateProduct.fulfilled, (state, action) => {
         const updatedProduct = action.payload;
-        const index = state.products.findIndex(
+        const index = state.productData.findIndex(
           (p) => p._id === updatedProduct._id
         )
         state.productData[index] = updatedProduct
+        state.selectedProduct=updatedProduct
       })
+      // .addCase(deleteProduct.fulfilled, (state, action) => {
+      //   const deleteProduct = action.payload.deleteProduct;
+      //   state.productData = state.productData.filter((product) => product._id !== deleteProduct)
+      // })
   }
 });
 

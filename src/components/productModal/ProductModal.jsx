@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import cartSlice from '../../store/cartSlice';
-import productSlice from '../../store/productSlice';
+import productSlice, { updateProduct } from '../../store/productSlice';
 
 const style = {
   position: 'absolute',
@@ -32,6 +32,7 @@ const ProductModal = () => {
 
   const addToCartOnClick = () => {
     dispatch(cartSlice.actions.itemAddedToCart(product));
+    dispatch(updateProduct({product, amount: -1})) 
   };
 
   return (
@@ -40,7 +41,7 @@ const ProductModal = () => {
         <Card style={style}>
           <CardMedia
             sx={{ height: 275 }}
-            image={product?.image}
+            image={`http://source.unsplash.com/random?${product.name}`}
             title={product?.name}
           />
           <CardContent>
