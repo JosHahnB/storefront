@@ -17,12 +17,14 @@ const Product = ({ product }) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(productSlice.actions.showProduct(product));
-
   };
   // "name": "TV",
   // "category": "electronics",
   // "price": 699.0,
   // "inStock": 5
+
+  // <CartCount itemCount={itemCount} 
+
   return (
     <Grid item xs={'auto'}>
       <Card align='center'>
