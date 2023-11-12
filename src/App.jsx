@@ -1,13 +1,11 @@
 import { useEffect } from 'react';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-import ProductModal from './components/productModal/ProductModal';
-import Products from './components/products/Products';
-import Category from './components/categoryDropdown/Category';
-import Cart from './components/cart/Cart';
-import { getProducts  } from './store/productSlice';
+
+import { getProducts } from './store/productSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCategories } from './store/categorySlice';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Checkout } from './components/checkout/Checkout';
+import Home from './components/homePage/home';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -18,17 +16,18 @@ const App = () => {
     dispatch(getCategories());
   }, [dispatch]);
 
-console.log(productData);
+  console.log(productData);
   return (
     <div>
-    
+      {/* <Header /> */}
+     
 
-      <Header />
-      <Cart />
-      <Category />
-      <Products />
-      <Footer />
-      <ProductModal />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/checkout" element={<Checkout />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };

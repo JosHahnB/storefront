@@ -14,7 +14,7 @@ export const getProducts = createAsyncThunk('GET/products', async () => {
 
 export const updateProduct = createAsyncThunk(
   "PUT/product/:id",
-  async ({ product, amount }) => {
+  async ({ product, amount, remove }) => {
     const updatedProduct = { ...product, inStock: product.inStock + amount };
 
     const response = await fetch(`${url}/products/${product._id}`, {
@@ -24,7 +24,8 @@ export const updateProduct = createAsyncThunk(
     });
 
     const json = await response.json();
-    return json;
+
+    return remove ? {...json, remove} : json;
   }
 );
 
@@ -68,8 +69,15 @@ const productSlice = createSlice({
         const index = state.productData.findIndex(
           (p) => p._id === updatedProduct._id
         )
+        const remove = updatedProduct.remove;
+        if (remove) {
+          delete updatedProduct.remove
+        }
         state.productData[index] = updatedProduct
-        state.selectedProduct=updatedProduct
+        if(!remove) {
+          state.selectedProduct=updatedProduct
+        }
+        
       })
       // .addCase(deleteProduct.fulfilled, (state, action) => {
       //   const deleteProduct = action.payload.deleteProduct;
