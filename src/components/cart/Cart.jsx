@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import cartSlice from '../../store/cartSlice';
 import { updateProduct } from '../../store/productSlice';
 import CartCount from './CartCount'; // Import the new component
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,8 @@ const Cart = () => {
     dispatch(cartSlice.actions.deletedItemFromCart(index));
     dispatch(updateProduct({ product: item, amount: 0, remove: true }));
   };
+
+  
 
   return (
     <Grid container>
